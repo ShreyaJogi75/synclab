@@ -1,29 +1,29 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return render(request,"index.html")
+    return render(request, "index.html")
 
 def index9(request):
-    return render(request,"index9.html")
+    return render(request, "index9.html")
 
 def about(request):
-    return render(request,"about.html")
+    return render(request, "about.html")
 
 def login(request):
-    return render(request,"login.html")
+    return render(request, "login.html")
 
 def register(request):
-    return render(request,"register.html")
+    return render(request, "register.html")
 
 def errorpage(request):
-    return render(request,"404.html")    
+    return render(request, "404.html")    
 
 def contact(request):
-    return render(request,"contact.html")
+    return render(request, "contact.html")
     
 def help(request):
-    return render(request,"help.html")  
+    return render(request, "help.html")  
 
 def projects(request):
-    return render(request,"projects.html") 
+    return render(request, "projects.html")
