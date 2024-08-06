@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <!-- responsive -->
   <link rel="stylesheet" href="/static/css/responsive.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -136,6 +137,34 @@
         <div class="col-md-10 col-lg-8">
           <div class="section-title extra">
             <h2 class="title">Projects</h2>
+            <style>
+              .upload-btn {
+                display: inline-block;
+                padding: 12px 25px;
+                font-size: 16px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #fff;
+                background: linear-gradient(90deg, #4b6cb7, #182848);
+                border: none;
+                border-radius: 25px;
+                transition: background 0.3s, transform 0.3s;
+              }
+          
+              .upload-btn:hover {
+                background: linear-gradient(90deg, #182848, #4b6cb7);
+                transform: scale(1.05);
+              }
+            </style>
+          
+            <div class="container text-center mt-5">
+              <a href="#" class="upload-btn">Upload Project</a>
+            </div>
+          
+            <!-- Bootstrap JS, Popper.js, and jQuery -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <p>
               Welcome to Synclab, where creativity meets collaboration!
             </p>

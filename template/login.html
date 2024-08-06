@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> SYNCLAB </title>
+  <title>SYNCLAB</title>
   {% load static %}
   <!-- favicon -->
-  <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
   <!-- bootstrap -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <!-- fontawesome -->
-  <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+  <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
   <!-- Flat Icon -->
-  <link rel="stylesheet" href="/static/css/flaticon.css">
+  <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
   <!-- animate -->
-  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
   <!-- Owl Carousel -->
-  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
   <!-- magnific popup -->
-  <link rel="stylesheet" href="/static/css/magnific-popup.css">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
   <!-- AOS css -->
-  <link rel="stylesheet" href="/static/css/aos.css">
+  <link rel="stylesheet" href="{% static 'css/aos.css' %}">
   <!-- stylesheet -->
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- responsive -->
-  <link rel="stylesheet" href="/static/css/responsive.css">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
-
   <!-- preloader area start -->
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
@@ -50,14 +46,13 @@
   </div>
   <!-- preloader area end -->
 
-  <!-- Navebar Area start -->
+  <!-- Navbar Area start -->
   <header class="navigation">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 p-0">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="/index9">
-              <!-- <img src="/static/images/logo-color.png" alt=""> -->
+            <a class="navbar-brand" href="{% url 'index9' %}">
               <h3>Synclab</h3>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
@@ -67,31 +62,28 @@
             <div class="collapse navbar-collapse" id="mainmenu">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item ">
-                  <a class="nav-link" href="/index9">Home</a>
+                  <a class="nav-link" href="{% url 'index9' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/about">About</a>
+                  <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/help">Gt Help</a>
+                  <a class="nav-link" href="{% url 'help' %}">Get Help</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/projects">Projects</a>
+                  <a class="nav-link" href="{% url 'projects' %}">Projects</a>
                 </li>
                 <li class="nav-item dropdown">
-									<a class="nav-link active dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Login
-									</a>
-									<div class="dropdown-menu">
-
-                    <a class="dropdown-item" href="/login"><i class="fas fa-chevron-right"></i>Login</a>
-                    <a class="dropdown-item" href="/register"><i class="fas fa-chevron-right"></i>Register</a>
-
-									</div>
-								</li>
-               
+                  <a class="nav-link active dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
+                    <a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-chevron-right"></i>Register</a>
+                  </div>
+                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/contact">Contact Us</a>
+                  <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -100,70 +92,68 @@
       </div>
     </div>
   </header>
-  <!-- Navebar Area End -->
+  <!-- Navbar Area End -->
 
-
-<!-- Breadcrumb Area Start -->
-<section class="breadcrumb-area">
+  <!-- Breadcrumb Area Start -->
+  <section class="breadcrumb-area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h4 class="title">
-                    Login
-                </h4>
-                <ul class="breadcrumb-list">
-                    <li>
-                        <a href="/index9">
-                            <i class="fas fa-home"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <span><i class="fas fa-chevron-right"></i> </span>
-                    </li>
-                    <li>
-                        <a href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="title">
+            Login
+          </h4>
+          <ul class="breadcrumb-list">
+            <li>
+              <a href="{% url 'index9' %}">
+                <i class="fas fa-home"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <span><i class="fas fa-chevron-right"></i> </span>
+            </li>
+            <li>
+              <a href="{% url 'login' %}">Login</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
-</section>
-<!-- Breadcrumb Area End -->
+  </section>
+  <!-- Breadcrumb Area End -->
 
-
-	<!-- Signin Area Start -->
-	<section class="auth">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-6 col-md-10">
-					<div class="sign-form">
-						<div class="heading">
-							<h4 class="title">
-									Login
-							</h4>
-							<p class="subtitle">
-									Sign in to your account to continue.
-							</p>
-						</div>
-						<form class="form-group mb-0" action="#">
-						  <input class="form-control " type="text" name="yourname" placeholder="User Name">
-						  <input class="form-control" type="password" name="password" placeholder="Password">
-						  <div class="custom-control custom-checkbox  d-flex">
-							<input type="checkbox" class="custom-control-input" id="remember">
-							<label class="custom-control-label ml-2" for="remember">Remember Me</label>
-							<span class="ml-auto"><a href="forgot-pass.html">Forgot Password ?</a></span>
-						  </div>
-						  <button class="bigbtn" type="submit">Log In</button>
-              <p class="reg-text text-center mb-0">Don't have an account? <a href="/register">Register Now</a></p>
-						</form>
-					  </div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Signin Area End -->
-
+  <!-- Signin Area Start -->
+  <section class="auth">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-10">
+          <div class="sign-form">
+            <div class="heading">
+              <h4 class="title">
+                Login
+              </h4>
+              <p class="subtitle">
+                Sign in to your account to continue.
+              </p>
+            </div>
+            <form class="form-group mb-0" action="{% url 'login' %}" method="post">
+              {% csrf_token %}
+              <input class="form-control" type="text" name="username" placeholder="User Name" required>
+              <input class="form-control" type="password" name="password" placeholder="Password" required>
+              <div class="custom-control custom-checkbox d-flex">
+                <input type="checkbox" class="custom-control-input" id="remember" name="remember">
+                <label class="custom-control-label ml-2" for="remember">Remember Me</label>
+                <span class="ml-auto"><a href="#">Forgot Password ?</a></span>
+              </div>
+              <button class="bigbtn" type="submit">Log In</button>
+              <p class="reg-text text-center mb-0">Don't have an account? <a href="{% url 'register' %}">Register Now</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Signin Area End -->
 
   <!-- Footer Section Start -->
   <footer class="footer" id="footer">
@@ -177,12 +167,10 @@
               </a>
             </div>
             <div class="text">
-              <p>Conveying or northward offending admitting perfectly my. Colonel gravity get thought fat smiling add
-                but. 
-              </p>
+              <p>Conveying or northward offending admitting perfectly my. Colonel gravity get thought fat smiling add but.</p>
             </div>
           </div>
-          <div class="fotter-social-links">
+          <div class="footer-social-links">
             <ul>
               <li>
                 <a href="#" class="facebook">
@@ -216,7 +204,7 @@
     </div>
     <div class="copy-bg text-center">
       <p>Copyright © 2020. All rights reserved by
-        <a href="/index9">Synclab</a>
+        <a href="{% url 'index9' %}">Synclab</a>
       </p>
     </div>
   </footer>
@@ -228,35 +216,30 @@
   </div>
   <!-- Back to Top End -->
 
-
   <!-- jquery -->
-  <script src="/static/js/jquery.js"></script>
+  <script src="{% static 'js/jquery.js' %}"></script>
   <!-- popper -->
-  <script src="/static/js/popper.min.js"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
   <!-- bootstrap -->
-  <script src="/static/js/bootstrap.min.js"></script>
-  <!-- way poin js-->
-  <script src="/static/js/waypoints.min.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- waypoints js-->
+  <script src="{% static 'js/waypoints.min.js' %}"></script>
   <!-- owl carousel -->
-  <script src="/static/js/owl.carousel.min.js"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
   <!-- magnific popup -->
-  <script src="/static/js/jquery.magnific-popup.js"></script>
+  <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
   <!-- aos js-->
-  <script src="/static/js/aos.js"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
   <!-- counterup js-->
-  <script src="/static/js/jquery.countdown.min.js"></script>
+  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
   <!-- easing js-->
-  <script src="/static/js/jquery.easing.1.3.js"></script>
-  <!-- Map js -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7eALQrRUekFNQX71IBNkxUXcz-ALS-MY&amp;sensor=false"></script>
-	<script src="/static/js/gmap.js"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
   <!-- main -->
-  <script src="/static/js/contact.js"></script>
+  <script src="{% static 'js/contact.js' %}"></script>
   <!-- main -->
-  <script src="/static/js/main.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <!-- Google Maps -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7eALQrRUekFNQX71IBNkxUXcz-ALS-MY&amp;sensor=false"></script>
+  <script src="{% static 'js/gmap.js' %}"></script>
 </body>
-
-
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 </html>

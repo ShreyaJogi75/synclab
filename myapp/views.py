@@ -46,3 +46,22 @@ def errorpage(request):
 
 def registerpage(request):
     return render(request,'register.html')
+
+def LoginUser(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        try:
+            user = User.objects.get(username=username)
+            if user.password == password:
+                request.session['username'] = user.username
+                request.session['email'] = user.email
+                return redirect('projects')
+            else:
+                messages.error(request, "Incorrect password")
+                return redirect('login')
+        except User.DoesNotExist:
+            messages.error(request, "User does not exist")
+            return redirect('login')
+    return render(request, 'login.html')
