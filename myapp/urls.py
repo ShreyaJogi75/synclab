@@ -1,13 +1,13 @@
 from django.urls import path
-from myapp import views
+from . import views
 
 urlpatterns = [
     path('', views.index9, name='home'),  # Root URL maps to the index view
-    path('in', views.index9, name='index9'),
-    path('index/', views.index, name='index'),
+    path('index9/', views.index9, name='index9'),
     path('about/', views.about, name='about'),
     path('login/', views.login, name='login'),
-    path('register/', views.register, name='register'),
+    path('registerpage/', views.registerpage, name='registerpage'),
+    path('register/', views.register, name="register"),
     path('errorpage/', views.errorpage, name='errorpage'),
     path('contact/', views.contact, name='contact'),
     path('help/', views.help, name='help'),

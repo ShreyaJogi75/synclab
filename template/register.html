@@ -1,62 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SYNCLAB</title>
   {% load static %}
-  <!-- favicon -->
-  <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <!-- fontawesome -->
-  <link rel="stylesheet" href="/static/css/fontawesome.min.css">
-  <!-- Flat Icon -->
-  <link rel="stylesheet" href="/static/css/flaticon.css">
-  <!-- animate -->
-  <link rel="stylesheet" href="/static/css/animate.css">
-  <!-- Owl Carousel -->
-  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
-  <!-- magnific popup -->
-  <link rel="stylesheet" href="/static/css/magnific-popup.css">
-  <!-- AOS css -->
-  <link rel="stylesheet" href="/static/css/aos.css">
-  <!-- stylesheet -->
-  <link rel="stylesheet" href="/static/css/style.css">
-  <!-- responsive -->
-  <link rel="stylesheet" href="/static/css/responsive.css">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
 
-  <!-- preloader area start -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-inner">
-      <div class="cube-wrapper">
-        <div class="cube-folding">
-          <span class="leaf1"></span>
-          <span class="leaf2"></span>
-          <span class="leaf3"></span>
-          <span class="leaf4"></span>
-        </div>
-        <span class="loading" data-name="Loading">Loading</span>
-      </div>
-    </div>
-  </div>
-  <!-- preloader area end -->
-
-  <!-- Navebar Area start -->
   <header class="navigation">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 p-0">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="/index9">
+            <a class="navbar-brand" href="{% url 'index9' %}">
               <h3>SYNCLAB</h3>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
@@ -66,31 +35,28 @@
             <div class="collapse navbar-collapse" id="mainmenu">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="/index9">Home</a>
+                  <a class="nav-link" href="{% url 'index9' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/about">About</a>
+                  <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/help">Get Help</a>
+                  <a class="nav-link" href="{% url 'help' %}">Get Help</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/projects">Projects</a>
+                  <a class="nav-link" href="{% url 'projects' %}">Projects</a>
                 </li>
                 <li class="nav-item dropdown">
-									<a class="nav-link active dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Login
-									</a>
-									<div class="dropdown-menu">
-     
-                    <a class="dropdown-item" href="/login"><i class="fas fa-chevron-right"></i>Login</a>
-                    <a class="dropdown-item" href="/register"><i class="fas fa-chevron-right"></i>Register</a>
-
-									</div>
-								</li>
-                
+                  <a class="nav-link active dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
+                    <a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-chevron-right"></i>Register</a>
+                  </div>
+                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/contact">Contact Us</a>
+                  <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -99,72 +65,65 @@
       </div>
     </div>
   </header>
-  <!-- Navebar Area End -->
 
-
-<!-- Breadcrumb Area Start -->
-<section class="breadcrumb-area">
+  <section class="breadcrumb-area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h4 class="title">
-                    Register
-                </h4>
-                <ul class="breadcrumb-list">
-                    <li>
-                        <a href="/index9">
-                            <i class="fas fa-home"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <span><i class="fas fa-chevron-right"></i> </span>
-                    </li>
-                    <li>
-                        <a href="/register">Register</a>
-                    </li>
-                </ul>
-            </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="title">
+            Register
+          </h4>
+          <ul class="breadcrumb-list">
+            <li>
+              <a href="{% url 'index9' %}">
+                <i class="fas fa-home"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <span><i class="fas fa-chevron-right"></i> </span>
+            </li>
+            <li>
+              <a href="{% url 'register' %}">Register</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
-</section>
-<!-- Breadcrumb Area End -->
+  </section>
 
-	<!-- Signin Area Start -->
-	<section class="auth">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-6 col-md-10">
-					<div class="sign-form">
-						<div class="heading">
-							<h4 class="title">
-									Create account
-							</h4>
-							<p class="subtitle">
-									Made with love by developers for developers.
-							</p>
-						</div>
-						<form class="form-group mb-0" action="#">
-						  <input class="form-control " type="text" name="yourname" placeholder="Enter User Name">
-						  <input class="form-control " type="email" name="email" placeholder="Email Address">
-						  <input class="form-control" type="password" name="password" placeholder="Password">
-						  <input class="form-control" type="password" name="c-password" placeholder="Confirm  Password">
-						  <div class="custom-control custom-checkbox  d-flex">
-							<input type="checkbox" class="custom-control-input" id="remember">
-							<label class="custom-control-label ml-2" for="remember">I agree to the <a href="#">terms and conditions</a> </label>
-						  </div>  
-						  <button class="bigbtn" type="submit">Create Account</button>
-						  <p class="reg-text text-center mb-0">Already have an acocunt? <a href="/login">LogIn</a></p>
-						</form>
-					  </div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Signin Area End -->
+  <section class="auth">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-10">
+          <div class="sign-form">
+            <div class="heading">
+              <h4 class="title">
+                Create account
+              </h4>
+              <p class="subtitle">
+                Made with love by developers for developers.
+              </p>
+            </div>
+            <form class="form-group mb-0" method="post" action="{% url 'register' %}">
+              {% csrf_token %}
+              <input class="form-control" type="text" name="username" placeholder="Enter User Name" required>
+              <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+              <input class="form-control" type="password" name="password" placeholder="Password" required>
+              <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" required>
+              <div class="custom-control custom-checkbox d-flex">
+                <input type="checkbox" class="custom-control-input" id="remember" required>
+                <label class="custom-control-label ml-2" for="remember">I agree to the <a href="#">terms and conditions</a> </label>
+              </div>  
+              <button class="bigbtn" type="submit">Create Account</button>
+              <p class="reg-text text-center mb-0">Already have an account? <a href="{% url 'login' %}">LogIn</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-  <!-- Footer Section Start -->
   <footer class="footer" id="footer">
     <div class="container">
       <div class="row justify-content-center">
@@ -183,78 +142,26 @@
           </div>
           <div class="fotter-social-links">
             <ul>
-              <li>
-                <a href="#" class="facebook">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="twitter">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="linkedin">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="google-plus">
-                  <i class="fab fa-google-plus-g"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="dribbble">
-                  <i class="fab fa-dribbble"></i>
-                </a>
-              </li>
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="copy-bg text-center">
-      <p>Copyright © 2020. All rights reserved by
-        <a href="/index9">Synlab</a>
-      </p>
-    </div>
   </footer>
-  <!-- Footer Section End -->
 
-  <!-- Back to Top Start -->
-  <div class="bottomtotop">
-    <i class="fa fa-chevron-right"></i>
-  </div>
-  <!-- Back to Top End -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/wow.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 
-
-  <!-- jquery -->
-  <script src="/static/js/jquery.js"></script>
-  <!-- popper -->
-  <script src="/static/js/popper.min.js"></script>
-  <!-- bootstrap -->
-  <script src="/static/js/bootstrap.min.js"></script>
-  <!-- way poin js-->
-  <script src="/static/js/waypoints.min.js"></script>
-  <!-- owl carousel -->
-  <script src="/static/js/owl.carousel.min.js"></script>
-  <!-- magnific popup -->
-  <script src="/static/js/jquery.magnific-popup.js"></script>
-  <!-- aos js-->
-  <script src="/static/js/aos.js"></script>
-  <!-- counterup js-->
-  <script src="/static/js/jquery.countdown.min.js"></script>
-  <!-- easing js-->
-  <script src="/static/js/jquery.easing.1.3.js"></script>
-  <!-- Map js -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7eALQrRUekFNQX71IBNkxUXcz-ALS-MY&amp;sensor=false"></script>
-	<script src="/static/js/gmap.js"></script>
-  <!-- main -->
-  <script src="/static/js/contact.js"></script>
-  <!-- main -->
-  <script src="/static/js/main.js"></script>
 </body>
-
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 </html>
