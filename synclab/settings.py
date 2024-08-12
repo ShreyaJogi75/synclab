@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'synclab',
         'USER': 'root',
-        'PASSWORD': '1209',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
     }
