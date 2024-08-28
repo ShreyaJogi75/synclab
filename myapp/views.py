@@ -34,6 +34,7 @@ def register(request):
     return render(request, 'register.html')
 
 
+
 def index9(request):
     return render(request, 'index9.html')
 
@@ -62,7 +63,7 @@ def LoginUser(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        request.session['username']=""
+        request.session['username'] = ""
         user = authenticate(request, username=username, password=password)
         
         if user is not None:

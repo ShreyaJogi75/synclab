@@ -136,6 +136,19 @@
                 Sign in to your account to continue.
               </p>
             </div>
+            <!-- Display messages -->
+            {% if messages %}
+            <div class="alert-container">
+              {% for message in messages %}
+                <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                  <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <p style="color: white;">{{ message }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+          
+
             <form class="form-group mb-0" action="{% url 'loginuser' %}" method="post">
               {% csrf_token %}
               <input class="form-control" type="text" name="username" placeholder="User Name" required>
@@ -201,7 +214,7 @@
       </div>
     </div>
     <div class="copy-bg text-center">
-      <p>Copyright © 2020. All rights reserved by
+      <p>Copyright © 2020. All rights reserved by Synclab</p>
         <a href="{% url 'index9' %}">Synclab</a>
       </p>
     </div>

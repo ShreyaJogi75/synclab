@@ -55,6 +55,67 @@
 /*---------------------------
 ** Global style
 ---------------------------*/
+/* Container for alert messages */
+.alert-container {
+  margin: 20px 0;
+}
+
+/* General styling for alert messages */
+.alert {
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+  color: #fff; /* Set text color to white */
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid transparent; /* Border color will be set by specific classes */
+}
+
+/* Error messages */
+.alert.error {
+  background-color: #cf7b7b; /* Light red background for error */
+  border-color: #ff0303; /* Darker red border for error */
+}
+
+/* Success messages */
+.alert.success {
+  background-color: #629764; /* Dark green background for success */
+  border-color: #388e3c; /* Darker green border for success */
+}
+
+/* Info messages */
+.alert.info {
+  background-color: #2196f3; /* Blue background for info */
+  border-color: #1976d2; /* Darker blue border for info */
+}
+
+/* Warning messages */
+.alert.warning {
+  background-color: #ff9800; /* Orange background for warning */
+  border-color: #f57c00; /* Darker orange border for warning */
+}
+
+/* Optional shadow effect for a more modern look */
+.alert {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjusted shadow color for better contrast */
+}
+
+/* Adding a close button */
+.alert .close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff; /* Set close button color to white for better visibility */
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.alert .close:hover {
+  opacity: 1;
+}
+
+
+
 .mybtn1 {
   font-size: 14px;
   text-transform: uppercase;

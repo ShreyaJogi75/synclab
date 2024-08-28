@@ -105,15 +105,21 @@
                 Made with love by developers for developers.
               </p>
             </div>
+            {% if messages %}
+  <div class="alert-container">
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+        <p style="color: white;">{{ message }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
             <form class="form-group mb-0" method="post" action="{% url 'register' %}">
               {% csrf_token %}
               <input class="form-control" type="text" name="username" placeholder="Enter User Name" required>
               <input class="form-control" type="email" name="email" placeholder="Email Address" required>
               <input class="form-control" type="password" name="password" placeholder="Password" required>
               <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" required>
-              <div class="custom-control custom-checkbox d-flex">
-                
-              </div>  
               <button class="bigbtn" type="submit">Create Account</button>
               <p class="reg-text text-center mb-0">Already have an account? <a href="{% url 'login' %}">LogIn</a></p>
             </form>
@@ -139,7 +145,7 @@
               </p>
             </div>
           </div>
-          <div class="fotter-social-links">
+          <div class="footer-social-links">
             <ul>
               <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
               <li><a href="#"><i class="fab fa-twitter"></i></a></li>
