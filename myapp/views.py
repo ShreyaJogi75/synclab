@@ -33,8 +33,6 @@ def register(request):
     
     return render(request, 'register.html')
 
-
-
 def index9(request):
     return render(request, 'index9.html')
 
@@ -55,6 +53,9 @@ def projects(request):
 
 def errorpage(request):
     return render(request, '404.html')
+
+def forgotpasspage(request):
+    return render(request,'forgot-pass.html')
 
 def registerpage(request):
     return render(request,'register.html')
