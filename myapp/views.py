@@ -6,13 +6,14 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.core.mail import send_mail
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordResetForm
-import random,string
+import random,string,logging
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
+logger = logging.getLogger(__name__)
 
 def generate_otp(length=6):
     return ''.join(random.choices(string.digits, k=length))
@@ -66,6 +67,87 @@ def verify_otp(request):
     
     return render(request, 'verify_otp.html')
 
+def register(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        cpassword = request.POST['cpassword']
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "User with this email already exists")
+            return redirect('register')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already taken")
+            return redirect('register')
+
+        if password == cpassword:
+            # Generate OTP
+            otp_code = generate_otp()
+            otp_record = OTP(otp_code=otp_code)
+            otp_record.save()
+
+            otp_expiry_time = timezone.now() + timezone.timedelta(minutes=10)
+            request.session['otp_id'] = otp_record.id
+            request.session['otp_email'] = email
+            request.session['otp_username'] = username
+            request.session['otp_password'] = password
+            request.session['otp_expiry_time'] = otp_expiry_time.isoformat()
+
+            # Send OTP email
+            send_mail(
+                'Your OTP Code',
+                f'Your OTP code is {otp_code}.',
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+            )
+
+            messages.success(request, "OTP sent to your email.")
+            return redirect('verify_otp1')  # Redirect to OTP verification page
+        else:
+            messages.error(request, "Password and Confirm Password do not match")
+            return redirect('register')
+
+    return render(request, 'register.html')
+
+def verify_otp1(request):
+    if request.method == 'POST':
+        otp_input = request.POST.get('otp')
+        otp_id = request.session.get('otp_id')
+
+        if otp_id:
+            otp_record = OTP.objects.filter(id=otp_id).first()
+            if otp_record:
+                if otp_record.is_valid() and otp_input == otp_record.otp_code:
+                    email = request.session.get('otp_email')
+                    username = request.session.get('otp_username')
+                    password = request.session.get('otp_password')
+
+                    if email and username and password:
+                        # Create the user
+                        User.objects.create_user(
+                            username=username,
+                            email=email,
+                            password=password
+                        )
+                        
+                        # Optionally delete the OTP record after successful registration
+                        otp_record.delete()
+
+                        messages.success(request, "User Registered Successfully")
+                        return redirect('login')
+                    else:
+                        messages.error(request, "User details are missing.")
+                else:
+                    messages.error(request, "Invalid or expired OTP. Please try again.")
+            else:
+                messages.error(request, "OTP record not found.")
+        else:
+            messages.error(request, "OTP session expired. Please request a new OTP.")
+
+    return render(request, 'verify_otp1.html')
+
 def reset_password(request):
     if request.method == 'POST':
         new_password1 = request.POST.get('new_password1')
@@ -110,36 +192,6 @@ def reset_password(request):
             return redirect('index9')
 
     return render(request, 'reset_password.html')
-
-
-def register(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        cpassword = request.POST['cpassword']
-        
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "User with this email already exists")
-            return redirect('register')
-        
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already taken")
-            return redirect('register')
-
-        if password == cpassword:
-            newuser = User.objects.create_user(username=username, email=email, password=password)
-            
-            # Create the user's profile
-            Profile.objects.create(user=newuser)
-            
-            messages.success(request, "User Registered Successfully")
-            return redirect('login')
-        else:
-            messages.error(request, "Password and Confirm Password do not match")
-            return redirect('register')
-    
-    return render(request, 'register.html')
 
 def index9(request):
     return render(request, 'index9.html')
