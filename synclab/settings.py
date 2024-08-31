@@ -143,3 +143,10 @@ EMAIL_HOST_USER = 'synclab8@gmail.com'
 EMAIL_HOST_PASSWORD = 'rtookinyeglxofar'
 
 SITE_URL = 'http://192.168.137.1:8000'
+
+# settings.py
+
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use the database to store session data
+SESSION_COOKIE_AGE = 1209600  # Session will last for 2 weeks
+SESSION_SAVE_EVERY_REQUEST = True  # Save the session on every request

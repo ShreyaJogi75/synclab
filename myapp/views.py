@@ -1,17 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Profile
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.core.mail import send_mail
-from .models import OTP
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordResetForm
 import random,string
+from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.contrib.auth import login, update_session_auth_hash
 
 def generate_otp(length=6):
     return ''.join(random.choices(string.digits, k=length))
@@ -25,7 +26,13 @@ def send_otp(request):
             otp_record, created = OTP.objects.get_or_create(user=user)
             otp_record.generate_otp()  # Generate a new OTP
             otp_record.save()
-            
+
+            # Calculate OTP expiry time (10 minutes from now)
+            otp_expiry_time = timezone.now() + timezone.timedelta(minutes=10)
+            request.session['otp_id'] = otp_record.id
+            request.session['otp_email'] = email
+            request.session['otp_expiry_time'] = otp_expiry_time.isoformat()
+
             # Send OTP email
             send_mail(
                 'Your OTP Code',
@@ -34,12 +41,12 @@ def send_otp(request):
                 [email],
             )
             messages.success(request, "OTP sent to your email.")
-            request.session['otp_id'] = otp_record.id  # Store OTP ID in session
             return redirect('verify_otp')  # Redirect to OTP verification page
         else:
             messages.error(request, "No account found with this email.")
 
     return render(request, 'forgot-pass.html')
+
 
 def verify_otp(request):
     if request.method == 'POST':
@@ -67,14 +74,26 @@ def reset_password(request):
         if new_password1 != new_password2:
             messages.error(request, "Passwords do not match.")
             return render(request, 'reset_password.html')
-
+        
         email = request.session.get('otp_email')
-        if not email:
+        otp_expiry_time_str = request.session.get('otp_expiry_time')
+
+        if not email or not otp_expiry_time_str:
             messages.error(request, "Session has expired or is invalid.")
-            return redirect('index9')  # Redirect to a safe page
+            return redirect('index9')
 
         try:
-            validate_email(email)  # Validate the email format
+            otp_expiry_time = timezone.datetime.fromisoformat(otp_expiry_time_str)
+        except ValueError:
+            messages.error(request, "Invalid expiry time format.")
+            return redirect('index9')
+
+        if timezone.now() > otp_expiry_time:
+            messages.error(request, "Session has expired.")
+            return redirect('index9')
+
+        try:
+            validate_email(email)
         except ValidationError:
             messages.error(request, "Invalid email address.")
             return redirect('index9')
@@ -83,13 +102,15 @@ def reset_password(request):
         if user:
             user.set_password(new_password1)
             user.save()
-            update_session_auth_hash(request, user)  # Keeps the user logged in if needed
-            messages.success(request, "Password reset successfully.")
-            return redirect('index9')  # Redirect to homepage or login page
+            auth_login(request, user)  # Use the correct alias here
+            messages.success(request, "Password reset successfully, and you are logged in.")
+            return redirect('projects')
         else:
             messages.error(request, "User not found.")
+            return redirect('index9')
 
     return render(request, 'reset_password.html')
+
 
 def register(request):
     if request.method == "POST":
@@ -151,16 +172,17 @@ def LoginUser(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        request.session['username'] = ""
+
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
-            auth_login(request, user)  # Use the aliased login function
+            auth_login(request, user)  # Log the user in
             request.session['username'] = user.username
             request.session['email'] = user.email
             return redirect('projects')
         else:
             messages.error(request, "Invalid username or password")
+            request.session['username'] = ""  # Clear session on failure
             return redirect('login')
 
     return render(request, 'login.html')
