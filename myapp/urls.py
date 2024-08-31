@@ -19,4 +19,5 @@ urlpatterns = [
     path('verify-otp/', views.verify_otp, name='verify_otp'),
     path('verify-otp1/', views.verify_otp1, name='verify_otp1'),
     path('reset-password/', views.reset_password, name='reset_password'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]

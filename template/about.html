@@ -77,17 +77,24 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/projects">Projects</a>
                 </li> 
-                <li class="nav-item dropdown">
-									<a class="nav-link active dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Login
-									</a>
-									<div class="dropdown-menu">
-                
-                    <a class="dropdown-item" href="/login"><i class="fas fa-chevron-right"></i>Login</a>
-                    <a class="dropdown-item" href="/register"><i class="fas fa-chevron-right"></i>Register</a>
-                  
-									</div>
-								</li>
+                {% if user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+    <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+      {% csrf_token %}
+    </form>
+  </li>
+{% else %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Login
+    </a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
+      <a class="dropdown-item" href="{% url 'registerpage' %}"><i class="fas fa-chevron-right"></i>Register</a>
+    </div>
+  </li>
+{% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="/contact">Contact Us</a>
                 </li>

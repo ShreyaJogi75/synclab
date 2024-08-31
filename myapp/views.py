@@ -13,6 +13,12 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
+from django.contrib.auth import logout
+
+def LogoutUser(request):
+    logout(request)
+    return redirect('index9')
+
 logger = logging.getLogger(__name__)
 
 def generate_otp(length=6):
@@ -193,6 +199,25 @@ def reset_password(request):
 
     return render(request, 'reset_password.html')
 
+def LoginUser(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth_login(request, user)  # Log the user in
+            request.session['username'] = user.username
+            request.session['email'] = user.email
+            return redirect('projects')
+        else:
+            messages.error(request, "Invalid username or password")
+            request.session['username'] = ""  # Clear session on failure
+            return redirect('login')
+
+    return render(request, 'login.html')
+
 def index9(request):
     return render(request, 'index9.html')
 
@@ -219,22 +244,3 @@ def forgotpasspage(request):
 
 def registerpage(request):
     return render(request,'register.html')
-
-def LoginUser(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            auth_login(request, user)  # Log the user in
-            request.session['username'] = user.username
-            request.session['email'] = user.email
-            return redirect('projects')
-        else:
-            messages.error(request, "Invalid username or password")
-            request.session['username'] = ""  # Clear session on failure
-            return redirect('login')
-
-    return render(request, 'login.html')
