@@ -11,7 +11,7 @@ urlpatterns = [
     path('registerpage/', views.registerpage, name='registerpage'),
     path('register/', views.register, name="register"),
     path('errorpage/', views.errorpage, name='errorpage'),
-    path('contact/', views.contact, name='contact'),
+    path('contactpage/', views.contact, name='contactpage'),
     path('help/', views.help, name='help'),
     path('projects/', views.projects, name='projects'),
     path('forgotpw/', auth_views.PasswordResetView.as_view(template_name='forgot-pass.html'), name='forgotpw'),
@@ -20,4 +20,6 @@ urlpatterns = [
     path('verify-otp1/', views.verify_otp1, name='verify_otp1'),
     path('reset-password/', views.reset_password, name='reset_password'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('success_page/', views.success_page, name='success_page'),
+    path('contact/', views.contact_view, name='contact'),
 ]

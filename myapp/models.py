@@ -24,3 +24,12 @@ class OTP(models.Model):
         OTP is valid for 10 minutes.
         """
         return (timezone.now() - self.created_at).total_seconds() < 600
+    
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.name} ({self.email})"

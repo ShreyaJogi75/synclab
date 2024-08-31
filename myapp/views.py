@@ -14,12 +14,35 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+logger = logging.getLogger(__name__)
+
+@login_required
+def contact_view(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # Log the data
+        print(f"Received contact form data: name={name}, email={email}, message={message}")
+
+        try:
+            # Save form data to the database
+            ContactMessage.objects.create(name=name, email=email, message=message)
+            print("Contact message saved successfully.")
+        except Exception as e:
+            print(f"Error saving contact message: {e}")
+
+        # Redirect after successful form submission
+        return redirect('success_page')
+
+    return render(request, 'contact.html')
+
 
 def LogoutUser(request):
     logout(request)
     return redirect('index9')
-
-logger = logging.getLogger(__name__)
 
 def generate_otp(length=6):
     return ''.join(random.choices(string.digits, k=length))
@@ -29,14 +52,14 @@ def send_otp(request):
         email = request.POST.get('email')
         user = User.objects.filter(email=email).first()
         if user:
-            # Create or update OTP record
-            otp_record, created = OTP.objects.get_or_create(user=user)
-            otp_record.generate_otp()  # Generate a new OTP
-            otp_record.save()
+            # Create a new OTP record
+            otp_record = OTP.objects.create()
+            otp_record.generate_otp()
 
-            # Calculate OTP expiry time (10 minutes from now)
+            # Store OTP and email in session
             otp_expiry_time = timezone.now() + timezone.timedelta(minutes=10)
             request.session['otp_id'] = otp_record.id
+            request.session['otp_code'] = otp_record.otp_code
             request.session['otp_email'] = email
             request.session['otp_expiry_time'] = otp_expiry_time.isoformat()
 
@@ -244,3 +267,6 @@ def forgotpasspage(request):
 
 def registerpage(request):
     return render(request,'register.html')
+
+def success_page(request):
+    return render(request, 'success_page.html')

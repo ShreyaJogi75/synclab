@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> SYNCLAB </title>
+  <title>SYNCLAB</title>
   <!-- favicon -->
   <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
   <!-- bootstrap -->
@@ -49,14 +47,13 @@
   </div>
   <!-- preloader area end -->
 
-  <!-- Navebar Area start -->
+  <!-- Navbar Area start -->
   <header class="navigation">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 p-0">
           <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/index9">
-              <!-- <img src="assets/images/logo-color.png" alt=""> -->
               <h3>Synclab</h3>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
@@ -65,7 +62,7 @@
             </button>
             <div class="collapse navbar-collapse" id="mainmenu">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a class="nav-link" href="/index9">Home</a>
                 </li>
                 <li class="nav-item">
@@ -78,31 +75,25 @@
                   <a class="nav-link" href="/projects">Projects</a>
                 </li>
                 {% if user.is_authenticated %}
-  <li class="nav-item">
-    <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
-    <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
-      {% csrf_token %}
-    </form>
-  </li>
-{% else %}
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Login
-    </a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
-      <a class="dropdown-item" href="{% url 'registerpage' %}"><i class="fas fa-chevron-right"></i>Register</a>
-    </div>
-  </li>
-{% endif %}
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#testimonial-area">Testimonial</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                  <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+                    {% csrf_token %}
+                  </form>
                 </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
+                    <a class="dropdown-item" href="{% url 'registerpage' %}"><i class="fas fa-chevron-right"></i>Register</a>
+                  </div>
+                </li>
+                {% endif %}
                 <li class="nav-item">
-                  <a class="nav-link" href="#faq">Faq</a>
-                </li> -->
-                <li class="nav-item">
-                  <a class="nav-link" href="/contact">Contact Us</a>
+                  <a class="nav-link" href="/contactpage">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -111,125 +102,120 @@
       </div>
     </div>
   </header>
-  <!-- Navebar Area End -->
+  <!-- Navbar Area End -->
 
-
-<!-- Breadcrumb Area Start -->
-<section class="breadcrumb-area">
+  <!-- Breadcrumb Area Start -->
+  <section class="breadcrumb-area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h4 class="title">
-                    Contact
-                </h4>
-                <ul class="breadcrumb-list">
-                    <li>
-                        <a href="/index9">
-                            <i class="fas fa-home"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <span><i class="fas fa-chevron-right"></i> </span>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb Area End -->
-
-
-
-<!-- Contact Area Start -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-10 col-lg-8">
-        <div class="section-title">
-          <h2 class="title">Contact Us</h2>
-          <p>
-            "When you help others feel important, you help yourself feel important too."
-           </p>
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="title">Contact</h4>
+          <ul class="breadcrumb-list">
+            <li>
+              <a href="/index9">
+                <i class="fas fa-home"></i> Home
+              </a>
+            </li>
+            <li>
+              <span><i class="fas fa-chevron-right"></i></span>
+            </li>
+            <li>
+              <a href="/contact">Contact Us</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6">
-        <div class="info-box box1">
-          <div class="left">
-            <div class="icon">
-              <i class="fas fa-phone"></i>
-            </div>
-          </div>
-          <div class="right">
-            <div class="content">
-              <p>+111 222 333 444</p>
-              <p>+111 222 333 444</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="info-box box2">
-          <div class="left">
-            <div class="icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-          </div>
-          <div class="right">
-            <div class="content">
-              <p>synclab.pvt@admin.com</p>
-              <p>synclab.pvt@dev.com</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="info-box box3">
-          <div class="left">
-            <div class="icon">
-              <i class="fas fa-map-marked-alt"></i>
-            </div>
-          </div>
-          <div class="right">
-            <div class="content">
-              <p>501, Iscon Empiro, Satelite, Ahemdabad, Gujarat, India</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="contact-form-wrapper">
-          <form id="contact-form" method="POST">
-            <div class="row">
-              <div class="col-md-12">
-                <input type="text" class="input-field borderd" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-12">
-                <input type="email" class="input-field borderd" id="email" placeholder="Eenter Your Email" required>
-              </div>
-              <div class="col-12">
-                <textarea class="input-field borderd textarea" rows="3" id="message"
-                  placeholder="Write your message here" required></textarea>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="mybtn1"> <span>Send Message</span></button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Contact Area End -->
+  </section>
+  <!-- Breadcrumb Area End -->
 
+  <!-- Contact Area Start -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+          <div class="section-title">
+            <h2 class="title">Contact Us</h2>
+            <p>"When you help others feel important, you help yourself feel important too."</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="info-box box1">
+            <div class="left">
+              <div class="icon">
+                <i class="fas fa-phone"></i>
+              </div>
+            </div>
+            <div class="right">
+              <div class="content">
+                <p>+111 222 333 444</p>
+                <p>+111 222 333 444</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="info-box box2">
+            <div class="left">
+              <div class="icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+            </div>
+            <div class="right">
+              <div class="content">
+                <p>synclab.pvt@admin.com</p>
+                <p>synclab.pvt@dev.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="info-box box3">
+            <div class="left">
+              <div class="icon">
+                <i class="fas fa-map-marked-alt"></i>
+              </div>
+            </div>
+            <div class="right">
+              <div class="content">
+                <p>501, Iscon Empiro, Satelite, Ahmedabad, Gujarat, India</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="contact-form-wrapper">
+            {% if user.is_authenticated %}
+            <form id="contact-form" method="POST" action="{% url 'contact' %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="input-field borderd" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-12">
+                  <input type="email" class="input-field borderd" name="email" placeholder="Enter Your Email" required>
+                </div>
+                <div class="col-12">
+                  <textarea class="input-field borderd textarea" rows="3" name="message" placeholder="Write your message here" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="mybtn1"><span>Send Message</span></button>
+                </div>
+              </div>
+            </form>
+            {% else %}
+            <p>You need to <a href="{% url 'login' %}?next={% url 'contact' %}">log in</a> to send a message.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Area End -->
 
   <!-- Footer Section Start -->
   <footer class="footer" id="footer">
@@ -239,8 +225,7 @@
           <div class="footer-info-area">
             <div class="footer-logo">
               <a href="#" class="logo-link">
-                <!-- <img src="assets/images/logo-color.png" alt=""> -->
-                 <h3>SYNCLAB</h3>
+              <h3>SYNCLAB</h3>
               </a>
             </div>
             <div class="text">
@@ -283,18 +268,17 @@
     </div>
     <div class="copy-bg text-center">
       <p>Copyright © 2024. All rights reserved by
-        <a href="/index9">Synclab.com</a>
+        <a href="/index9">Synclab</a>
       </p>
     </div>
   </footer>
   <!-- Footer Section End -->
 
   <!-- Back to Top Start -->
-  <div class="bottomtotop">
-    <i class="fa fa-chevron-right"></i>
+  <div class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
   </div>
   <!-- Back to Top End -->
-
 
   <!-- jquery -->
   <script src="/static/js/jquery.js"></script>
@@ -302,27 +286,16 @@
   <script src="/static/js/popper.min.js"></script>
   <!-- bootstrap -->
   <script src="/static/js/bootstrap.min.js"></script>
-  <!-- way poin js-->
-  <script src="/static/js/waypoints.min.js"></script>
-  <!-- owl carousel -->
+  <!-- wow -->
+  <script src="/static/js/wow.min.js"></script>
+  <!-- Owl Carousel -->
   <script src="/static/js/owl.carousel.min.js"></script>
+  <!-- AOS js -->
+  <script src="/static/js/aos.js"></script>
   <!-- magnific popup -->
   <script src="/static/js/jquery.magnific-popup.js"></script>
-  <!-- aos js-->
-  <script src="/static/js/aos.js"></script>
-  <!-- counterup js-->
-  <script src="/static/js/jquery.countdown.min.js"></script>
-  <!-- easing js-->
-  <script src="/static/js/jquery.easing.1.3.js"></script>
-  <!-- Map js -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7eALQrRUekFNQX71IBNkxUXcz-ALS-MY&amp;sensor=false"></script>
-	<script src="/static/js/gmap.js"></script>
-  <!-- main -->
-  <script src="/static/js/contact.js"></script>
   <!-- main -->
   <script src="/static/js/main.js"></script>
 </body>
 
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 </html>
