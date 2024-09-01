@@ -1,273 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> SYNCLAB </title>
-  {% load static %}
-  <!-- favicon -->
-  <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <!-- fontawesome -->
-  <link rel="stylesheet" href="/static/css/fontawesome.min.css">
-  <!-- Flat Icon -->
-  <link rel="stylesheet" href="/static/css/flaticon.css">
-  <!-- animate -->
-  <link rel="stylesheet" href="/static/css/animate.css">
-  <!-- Owl Carousel -->
-  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
-  <!-- magnific popup -->
-  <link rel="stylesheet" href="/static/css/magnific-popup.css">
-  <!-- AOS css -->
-  <link rel="stylesheet" href="/static/css/aos.css">
-  <!-- stylesheet -->
-  <link rel="stylesheet" href="/static/css/style.css">
-  <!-- responsive -->
-  <link rel="stylesheet" href="/static/css/responsive.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Project</title>
+    {% load static %}
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- responsive -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
 
-  <!-- preloader area start -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-inner">
-      <div class="cube-wrapper">
-        <div class="cube-folding">
-          <span class="leaf1"></span>
-          <span class="leaf2"></span>
-          <span class="leaf3"></span>
-          <span class="leaf4"></span>
-        </div>
-        <span class="loading" data-name="Loading">Loading</span>
-      </div>
-    </div>
-  </div>
-  <!-- preloader area end -->
-
-  <!-- Navbar Area Start -->
-<header class="navigation"> 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 p-0">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="{% url 'index9' %}">
-            <h3>Synclab</h3>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
-            aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="mainmenu">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item ">
-                <a class="nav-link" href="{% url 'index9' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'help' %}">Get Help</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'projects' %}">Projects</a>
-              </li>
-              
-              {% if user.is_authenticated %}
-  <li class="nav-item">
-    <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
-    <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
-      {% csrf_token %}
-    </form>
-  </li>
-{% else %}
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Login
-    </a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
-      <a class="dropdown-item" href="{% url 'registerpage' %}"><i class="fas fa-chevron-right"></i>Register</a>
-    </div>
-  </li>
-{% endif %}
-
-              
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'contactpage' %}">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- Navbar Area End -->
-
-
-
-<!-- Breadcrumb Area Start -->
-<section class="breadcrumb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h4 class="title">
-                    Login
-                </h4>
-                <ul class="breadcrumb-list">
-                    <li>
-                        <a href="/index9">
-                            <i class="fas fa-home"></i>
-                            Home
+    <!-- Navbar Area start -->
+    <header class="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/index9">
+                            <h3>Synclab</h3>
                         </a>
-                    </li>
-                    <li>
-                        <span><i class="fas fa-chevron-right"></i> </span>
-                    </li>
-                    <li>
-                        <a href="/projects">Projects</a>
-                    </li>
-                </ul>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
+                            aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="mainmenu">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/index9">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/help">Get Help</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/projects">Projects</a>
+                                </li>
+                                {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+                                        {% csrf_token %}
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Login
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-chevron-right"></i>Login</a>
+                                        <a class="dropdown-item" href="{% url 'registerpage' %}"><i class="fas fa-chevron-right"></i>Register</a>
+                                    </div>
+                                </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contactpage">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Breadcrumb Area End -->
+    </header>
+    <!-- Navbar Area End -->
 
-<!-- About Area Start -->
-<section class="about" id="about">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">
-          <div class="section-title extra">
-            <h2 class="title">Projects</h2>
-            <style>
-              .upload-btn {
-                display: inline-block;
-                padding: 12px 25px;
-                font-size: 16px;
-                font-weight: bold;
-                text-transform: uppercase;
-                color: #fff;
-                background: linear-gradient(90deg, #4b6cb7, #182848);
-                border: none;
-                border-radius: 25px;
-                transition: background 0.3s, transform 0.3s;
-              }
-          
-              .upload-btn:hover {
-                background: linear-gradient(90deg, #182848, #4b6cb7);
-                transform: scale(1.05);
-              }
-            </style>
-          
-            <div class="container text-center mt-5">
-              <a href="#" class="upload-btn">Upload Project</a>
-              {{ request.session.username }}
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="title">Projects</h4>
+                    <ul class="breadcrumb-list">
+                        <li>
+                            <a href="/index9">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <span><i class="fas fa-chevron-right"></i></span>
+                        </li>
+                        <li>
+                            <a href="/projects">Projects</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          
-            <!-- Bootstrap JS, Popper.js, and jQuery -->
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <p>
-              Welcome to Synclab, where creativity meets collaboration!
-            </p>
-          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="box">
-            <div class="inner-box">
-              <div class="icon">
-                <i class="flaticon-console"></i>
-              </div>
-              <h4 class="title">Python</h4>
-              <p class="text">
-            </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box">
-            <div class="inner-box">
-              <div class="icon">
-                <i class="flaticon-controller"></i>
-              </div>
-              <h4 class="title">JAVA</h4>
-              <p class="text">
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box">
-            <div class="inner-box">
-              <div class="icon">
-                <i class="flaticon-console"></i>
-              </div>
-              <h4 class="title">Node Js</h4>
-              <p class="text">
-                
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="box">
-            <div class="inner-box">
-              <div class="icon">
-                <i class="flaticon-console"></i>
-              </div>
-              <h4 class="title">PHP</h4>
-              <p class="text">
-            </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box">
-            <div class="inner-box">
-              <div class="icon">
-                <i class="flaticon-controller"></i>
-              </div>
-              <h4 class="title">Wordpress</h4>
-              <p class="text">
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box">
-            <div class="inner-box">
-              <div class="icon">
-                <i class="flaticon-console"></i>
-              </div>
-              <h4 class="title">Magento</h4>
-              <p class="text">
-                
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- About Area End -->
+    </section>
+    <!-- Breadcrumb Area End -->
 
+    <!-- Form Section Start -->
+    <section class="form-section">
+        <div class="container">
+            {% if user.is_authenticated %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="section-title">
+                    <h2 class="title">Upload Your Project</h2></div>
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="title" class="form-control" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="technologies_used">Technologies Used:</label>
+                    <input type="text" name="technologies_used" id="technologies_used" class="form-control" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description" class="form-control" required></textarea>
+                </div>
+            
+                <div class="form-group">
+                    <label for="files">Upload Files:</label>
+                    <input type="file" name="files" id="files" class="form-control-file" multiple required>
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
+            {% else %}
+            <p>You must be logged in to access this page. <a href="{% url 'login' %}">Login</a></p>
+            {% endif %}
+        </div>
+    </section>
+    <!-- Form Section End -->
 
-
-  <!-- Footer Section Start -->
+    <!-- Footer Section Start -->
   <footer class="footer" id="footer">
     <div class="container">
       <div class="row justify-content-center">
@@ -324,40 +197,21 @@
   </footer>
   <!-- Footer Section End -->
 
-  <!-- Back to Top Start -->
-  <div class="bottomtotop">
-    <i class="fa fa-chevron-right"></i>
-  </div>
-  <!-- Back to Top End -->
+    <!-- Back to Top Start -->
+    <div class="bottomtotop">
+        <i class="fa fa-chevron-up"></i>
+    </div>
+    <!-- Back to Top End -->
 
-
-  <!-- jquery -->
-  <script src="/static/js/jquery.js"></script>
-  <!-- popper -->
-  <script src="/static/js/popper.min.js"></script>
-  <!-- bootstrap -->
-  <script src="/static/js/bootstrap.min.js"></script>
-  <!-- way poin js-->
-  <script src="/static/js/waypoints.min.js"></script>
-  <!-- owl carousel -->
-  <script src="/static/js/owl.carousel.min.js"></script>
-  <!-- magnific popup -->
-  <script src="/static/js/jquery.magnific-popup.js"></script>
-  <!-- aos js-->
-  <script src="/static/js/aos.js"></script>
-  <!-- counterup js-->
-  <script src="/static/js/jquery.countdown.min.js"></script>
-  <!-- easing js-->
-  <script src="/static/js/jquery.easing.1.3.js"></script>
-  <!-- Map js -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7eALQrRUekFNQX71IBNkxUXcz-ALS-MY&amp;sensor=false"></script>
-	<script src="/static/js/gmap.js"></script>
-  <!-- main -->
-  <script src="/static/js/contact.js"></script>
-  <!-- main -->
-  <script src="/static/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
-
-<!-- Mirrored from geniusdevs.com/themeforest/prolab/probucket/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 11:39:44 GMT -->
 </html>

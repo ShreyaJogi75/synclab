@@ -114,7 +114,22 @@
   opacity: 1;
 }
 
+/* Add these styles to your stylesheet */
 
+.stylish-title {
+  font-family: 'Arial', sans-serif; /* Use a clean, modern font */
+    font-size: 2.5rem; /* Make the font size larger */
+    font-weight: 700; /* Make the font bold */
+    color: #2575fc; /* Use a bright color for the text */
+    text-align: center; /* Center the text */
+    margin-bottom: 1.5rem; /* Add space below the title */
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Add a gradient background */
+    -webkit-background-clip: text; /* Clip the background to text */
+    -webkit-text-fill-color: transparent; /* Make the text color transparent to show the gradient */
+    padding: 0.5rem 1rem; /* Add padding around the text */
+    border-radius: 4px; /* Slightly round the corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a 3D effect */
+}
 
 .mybtn1 {
   font-size: 14px;

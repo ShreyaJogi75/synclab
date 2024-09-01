@@ -15,6 +15,7 @@ from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+
 logger = logging.getLogger(__name__)
 
 @login_required
