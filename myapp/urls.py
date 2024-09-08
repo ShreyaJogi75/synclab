@@ -22,4 +22,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('success_page/', views.success_page, name='success_page'),
     path('contact/', views.contact_view, name='contact'),
+    path('viewnot',views.viewnot, name="viewnot" ),
 ]

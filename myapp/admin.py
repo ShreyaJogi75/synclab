@@ -7,3 +7,4 @@ from django.contrib.sessions.models import Session
 admin.site.register(Profile)
 admin.site.register(ContactMessage)
 admin.site.register(OTP)
+admin.site.register(NotificationModel)

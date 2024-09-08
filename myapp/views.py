@@ -271,3 +271,7 @@ def registerpage(request):
 
 def success_page(request):
     return render(request, 'success_page.html')
+
+def viewnot(request):
+    note = NotificationModel.objects.all()
+    return render(request,"index9.html",{'notes':note})

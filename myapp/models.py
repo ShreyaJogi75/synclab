@@ -5,6 +5,11 @@ import string
 from django.utils import timezone
 # Create your models here.
 
+class NotificationModel(models.Model):
+    not_title = models.CharField(max_length=100)
+    not_content = models.TextField(max_length=100)
+
+
 class Profile(models.Model):  # Renaming your model to avoid conflicts
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # You can add additional fields here
