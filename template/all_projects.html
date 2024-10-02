@@ -41,6 +41,9 @@
                         <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="/help">Get Help</a></li>
                         <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contactpage">Contact Us</a>
+                          </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'all_projects' %}">All Projects</a>
@@ -60,7 +63,6 @@
                                 </div>
                             </li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="/contactpage">Contact Us</a></li>
                     </ul>
                 </div>
             </nav>
@@ -76,19 +78,16 @@
                     <h4 class="title">My Projects</h4>
                     <ul class="breadcrumb-list">
                         <li>
-                            <a href="/index9"><i class="fas fa-home"></i> Home</a>
+                            <a href="/index9">
+                                <i class="fas fa-home"></i>
+                                Home
+                            </a>
                         </li>
                         <li>
-                            <span><i class="fas fa-chevron-right"></i></span>
+                            <span><i class="fas fa-chevron-right"></i> </span>
                         </li>
                         <li>
-                            <a href="/projects">Projects</a>
-                        </li>
-                        <li>
-                            <span><i class="fas fa-chevron-right"></i></span>
-                        </li>
-                        <li>
-                            <span>My Projects</span>
+                            <a href="/all-projects">All Projects</a>
                         </li>
                     </ul>
                 </div>
@@ -100,7 +99,7 @@
     <!-- My Projects Area Start -->
     <section class="form-section">
         <div class="container">
-            <h2 class="title" style="font-size: 40px; font-weight: bold;">All Projects</h2><br>
+            <br><h2 class="title" style="font-size: 40px; font-weight: bold;">All Projects</h2><br>
     
             <!-- Search Form -->
             <form method="GET" action="{% url 'all_projects' %}" class="form-inline mb-4">

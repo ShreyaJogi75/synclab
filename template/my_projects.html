@@ -41,6 +41,7 @@
                         <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="/help">Get Help</a></li>
                         <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contactpage">Contact Us</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'all_projects' %}">All Projects</a>
@@ -60,7 +61,6 @@
                                 </div>
                             </li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="/contactpage">Contact Us</a></li>
                     </ul>
                 </div>
             </nav>
@@ -88,7 +88,7 @@
                             <span><i class="fas fa-chevron-right"></i></span>
                         </li>
                         <li>
-                            <span>My Projects</span>
+                            <a href="/my-projects">My Projects</a>
                         </li>
                     </ul>
                 </div>
@@ -101,7 +101,7 @@
     <section class="form-section">
         <div class="container">
             <h2 class="title" style="font-size: 40px; font-weight: bold;">My Projects</h2><br>
-
+    
             {% if projects %}
                 <table class="table table-striped">
                     <thead>
@@ -120,6 +120,14 @@
                             <td>{{ project.description }}</td>
                             <td>
                                 <a href="{{ project.file.url }}" class="btn btn-primary" download>Download ZIP</a>
+                                
+                                <!-- Delete Button -->
+                                <form method="POST" action="{% url 'delete_project' project.id %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
@@ -129,7 +137,7 @@
                 <p>No projects uploaded yet.</p>
             {% endif %}
         </div>
-    </section>
+    </section>    
     <!-- My Projects Area End -->
 
     <!-- Footer Section Start -->

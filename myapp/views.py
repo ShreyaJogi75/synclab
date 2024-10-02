@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import *
 from django.db.models import Q
@@ -19,6 +19,15 @@ from django.contrib.auth.decorators import login_required
 import os
 
 logger = logging.getLogger(__name__)
+
+def delete_project(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    
+    # Check if the logged-in user is the owner of the project (optional security check)
+    if request.user == project.user:  # Assuming `user` is the foreign key to the user model
+        project.delete()
+    
+    return redirect('my_projects')
 
 def all_projects(request):
     query = request.GET.get('q')  # Get the search query from the request

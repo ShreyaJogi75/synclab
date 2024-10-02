@@ -26,8 +26,9 @@ urlpatterns = [
     path('contact/', views.contact_view, name='contact'),
     path('viewnot',views.viewnot, name="viewnot" ),
     path('upload_project/', views.upload_project, name='upload_project'),
-    path('my_projects/', views.my_projects, name='my_projects'),
-     path('all-projects/', views.all_projects, name='all_projects'),
+    path('my-projects/', views.my_projects, name='my_projects'),
+    path('all-projects/', views.all_projects, name='all_projects'),
+    path('delete_project/<int:project_id>/', views.delete_project, name='delete_project'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
