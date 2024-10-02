@@ -15,9 +15,42 @@ from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+import os
 
 logger = logging.getLogger(__name__)
 
+@login_required
+def upload_project(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        technologies_used = request.POST.get('technologies_used')
+        description = request.POST.get('description')
+        file = request.FILES.get('files')  # Handling a single file upload
+
+        # Check if the uploaded file is a ZIP file
+        if file and file.name.endswith('.zip'):
+            # Create the project and save it to the database
+            project = Project.objects.create(
+                user=request.user,
+                title=title,
+                technologies_used=technologies_used,
+                description=description,
+                file=file
+            )
+            messages.success(request, "Project uploaded successfully!")
+            return render(request,'projects.html')  # Replace 'projects' with the appropriate redirect URL
+        else:
+            messages.error(request, "Please upload a valid ZIP file.")
+    
+    return render(request, 'projects.html')
+
+def my_projects(request):
+    if request.user.is_authenticated:
+        projects = Project.objects.filter(user=request.user)  # Assuming you have a ForeignKey to User in your Project model
+        return render(request, 'my_projects.html', {'projects': projects})
+    else:
+        return redirect('login') 
+    
 @login_required
 def contact_view(request):
     if request.method == "POST":

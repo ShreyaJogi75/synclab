@@ -19,7 +19,22 @@
 </head>
 
 <body>
-
+<!-- preloader area start -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="cube-wrapper">
+      <div class="cube-folding">
+        <span class="leaf1"></span>
+        <span class="leaf2"></span>
+        <span class="leaf3"></span>
+        <span class="leaf4"></span>
+      </div>
+      <span class="loading" data-name="Loading">Loading</span>
+    </div>
+  </div>
+</div>
+<!-- preloader area end -->
+ 
     <!-- Navbar Area start -->
     <header class="navigation">
         <div class="container">
@@ -104,98 +119,113 @@
 
     <!-- Form Section Start -->
     <section class="form-section">
-        <div class="container">
-            {% if user.is_authenticated %}
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <div class="section-title">
-                    <h2 class="title">Upload Your Project</h2></div>
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" class="form-control" required>
+      <div class="container">
+          {% if messages %}
+              <div class="alert alert-success">
+                  {% for message in messages %}
+                      <p>{{ message }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+  
+          {% if user.is_authenticated %}
+              <form method="post" enctype="multipart/form-data" action="{% url 'upload_project' %}">
+                  {% csrf_token %}
+                  <div class="form-group">
+                      <div class="section-title">
+                          <h2 class="title">Upload Your Project</h2>
+                      </div>
+                      <label for="title">Title:</label>
+                      <input type="text" name="title" id="title" class="form-control" required>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="technologies_used">Technologies Used:</label>
+                      <input type="text" name="technologies_used" id="technologies_used" class="form-control" required>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="description">Description:</label>
+                      <textarea name="description" id="description" class="form-control" required></textarea>
+                  </div>
+  
+                  <div class="form-group">
+                      <label for="files">Upload Zip File:</label>
+                      <input type="file" name="files" id="files" class="form-control-file" accept=".zip" required>
+                  </div>
+  
+                  <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{% url 'my_projects' %}" class="btn btn-secondary">My Projects</a>
                 </div>
-            
-                <div class="form-group">
-                    <label for="technologies_used">Technologies Used:</label>
-                    <input type="text" name="technologies_used" id="technologies_used" class="form-control" required>
+                
                 </div>
-            
-                <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea name="description" id="description" class="form-control" required></textarea>
-                </div>
-            
-                <div class="form-group">
-                    <label for="files">Upload Files:</label>
-                    <input type="file" name="files" id="files" class="form-control-file" multiple required>
-                </div>
-            
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            
-            {% else %}
-            <p>You must be logged in to access this page. <a href="{% url 'login' %}">Login</a></p>
-            {% endif %}
-        </div>
-    </section>
-    <!-- Form Section End -->
+              </form>
+  
+              
+          {% else %}
+              <p>You must be logged in to access this page. <a href="{% url 'login' %}">Login</a></p>
+          {% endif %}
+      </div>
+  </section>    
+  <!-- Form Section End -->
 
     <!-- Footer Section Start -->
-  <footer class="footer" id="footer">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="footer-info-area">
-            <div class="footer-logo">
-              <a href="#" class="logo-link">
-              <h3>SYNCLAB</h3>
-              </a>
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="footer-info-area">
+                        <div class="footer-logo">
+                            <a href="#" class="logo-link">
+                                <h3>SYNCLAB</h3>
+                            </a>
+                        </div>
+                        <div class="text">
+                            <p>Conveying or northward offending admitting perfectly my. Colonel gravity get thought fat smiling add
+                                but. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fotter-social-links">
+                        <ul>
+                            <li>
+                                <a href="#" class="facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="linkedin">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="google-plus">
+                                    <i class="fab fa-google-plus-g"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dribbble">
+                                    <i class="fab fa-dribbble"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="text">
-              <p>Conveying or northward offending admitting perfectly my. Colonel gravity get thought fat smiling add
-                but. 
-              </p>
-            </div>
-          </div>
-          <div class="fotter-social-links">
-            <ul>
-              <li>
-                <a href="#" class="facebook">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="twitter">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="linkedin">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="google-plus">
-                  <i class="fab fa-google-plus-g"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="dribbble">
-                  <i class="fab fa-dribbble"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="copy-bg text-center">
-      <p>Copyright © 2024. All rights reserved by
-        <a href="/index9">Synclab</a>
-      </p>
-    </div>
-  </footer>
-  <!-- Footer Section End -->
+        <div class="copy-bg text-center">
+            <p>Copyright © 2024. All rights reserved by
+                <a href="/index9">Synclab</a>
+            </p>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
 
     <!-- Back to Top Start -->
     <div class="bottomtotop">

@@ -9,7 +9,16 @@ class NotificationModel(models.Model):
     not_title = models.CharField(max_length=100)
     not_content = models.TextField(max_length=100)
 
+class Project(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Links the project to a specific user
+    title = models.CharField(max_length=255)
+    technologies_used = models.CharField(max_length=500)
+    description = models.TextField()
+    file = models.FileField(upload_to='projects/', validators=[])  # Stores the uploaded ZIP file
+    created_at = models.DateTimeField(auto_now_add=True)  # Automatically adds the timestamp when the project is created
 
+    def __str__(self):
+        return self.title
 class Profile(models.Model):  # Renaming your model to avoid conflicts
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # You can add additional fields here

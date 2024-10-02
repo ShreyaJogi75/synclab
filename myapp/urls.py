@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index9, name='home'),  # Root URL maps to the index view
@@ -23,4 +25,8 @@ urlpatterns = [
     path('success_page/', views.success_page, name='success_page'),
     path('contact/', views.contact_view, name='contact'),
     path('viewnot',views.viewnot, name="viewnot" ),
+    path('upload_project/', views.upload_project, name='upload_project'),
+    path('my_projects/', views.my_projects, name='my_projects'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
