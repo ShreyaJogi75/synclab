@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.core.mail import send_mail
@@ -18,6 +19,21 @@ from django.contrib.auth.decorators import login_required
 import os
 
 logger = logging.getLogger(__name__)
+
+def all_projects(request):
+    query = request.GET.get('q')  # Get the search query from the request
+    if query:
+        # Filter projects based on the search query matching title, technologies_used, or description
+        projects = Project.objects.filter(
+            Q(title__icontains=query) | 
+            Q(technologies_used__icontains=query) | 
+            Q(description__icontains=query)
+        ).select_related('user')
+    else:
+        # If no search query, display all projects
+        projects = Project.objects.select_related('user').all()
+
+    return render(request, 'all_projects.html', {'projects': projects, 'query': query})
 
 @login_required
 def upload_project(request):
@@ -41,7 +57,6 @@ def upload_project(request):
             return render(request,'projects.html')  # Replace 'projects' with the appropriate redirect URL
         else:
             messages.error(request, "Please upload a valid ZIP file.")
-    
     return render(request, 'projects.html')
 
 def my_projects(request):

@@ -100,8 +100,14 @@
     <!-- My Projects Area Start -->
     <section class="form-section">
         <div class="container">
-            <h2 class="title" style="font-size: 40px; font-weight: bold;">My Projects</h2><br>
-
+            <h2 class="title" style="font-size: 40px; font-weight: bold;">All Projects</h2><br>
+    
+            <!-- Search Form -->
+            <form method="GET" action="{% url 'all_projects' %}" class="form-inline mb-4">
+                <input type="text" name="q" class="form-control mr-2" placeholder="Search projects..." value="{{ query }}">
+                <button type="submit" class="btn btn-secondary">Search</button>
+            </form>
+    
             {% if projects %}
                 <table class="table table-striped">
                     <thead>
@@ -109,6 +115,7 @@
                             <th>Title</th>
                             <th>Technologies Used</th>
                             <th>Description</th>
+                            <th>Uploaded By</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -118,6 +125,7 @@
                             <td>{{ project.title }}</td>
                             <td>{{ project.technologies_used }}</td>
                             <td>{{ project.description }}</td>
+                            <td>{{ project.user.username }}</td>
                             <td>
                                 <a href="{{ project.file.url }}" class="btn btn-primary" download>Download ZIP</a>
                             </td>
@@ -126,10 +134,10 @@
                     </tbody>
                 </table>
             {% else %}
-                <p>No projects uploaded yet.</p>
+                <p>No projects match your search.</p>
             {% endif %}
         </div>
-    </section>
+    </section>        
     <!-- My Projects Area End -->
 
     <!-- Footer Section Start -->

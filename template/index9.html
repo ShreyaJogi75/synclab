@@ -75,6 +75,9 @@
                   <a class="nav-link" href="{% url 'projects' %}">Projects</a>
                 </li>
                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'all_projects' %}">All Projects</a>
+              </li>
   <li class="nav-item">
     <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
     <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
