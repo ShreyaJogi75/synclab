@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import *
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.core.mail import send_mail
@@ -15,9 +16,65 @@ from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+import os
 
 logger = logging.getLogger(__name__)
 
+def delete_project(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    
+    # Check if the logged-in user is the owner of the project (optional security check)
+    if request.user == project.user:  # Assuming `user` is the foreign key to the user model
+        project.delete()
+    
+    return redirect('my_projects')
+
+def all_projects(request):
+    query = request.GET.get('q')  # Get the search query from the request
+    if query:
+        # Filter projects based on the search query matching title, technologies_used, or description
+        projects = Project.objects.filter(
+            Q(title__icontains=query) | 
+            Q(technologies_used__icontains=query) | 
+            Q(description__icontains=query)
+        ).select_related('user')
+    else:
+        # If no search query, display all projects
+        projects = Project.objects.select_related('user').all()
+
+    return render(request, 'all_projects.html', {'projects': projects, 'query': query})
+
+@login_required
+def upload_project(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        technologies_used = request.POST.get('technologies_used')
+        description = request.POST.get('description')
+        file = request.FILES.get('files')  # Handling a single file upload
+
+        # Check if the uploaded file is a ZIP file
+        if file and file.name.endswith('.zip'):
+            # Create the project and save it to the database
+            project = Project.objects.create(
+                user=request.user,
+                title=title,
+                technologies_used=technologies_used,
+                description=description,
+                file=file
+            )
+            messages.success(request, "Project uploaded successfully!")
+            return render(request,'projects.html')  # Replace 'projects' with the appropriate redirect URL
+        else:
+            messages.error(request, "Please upload a valid ZIP file.")
+    return render(request, 'projects.html')
+
+def my_projects(request):
+    if request.user.is_authenticated:
+        projects = Project.objects.filter(user=request.user)  # Assuming you have a ForeignKey to User in your Project model
+        return render(request, 'my_projects.html', {'projects': projects})
+    else:
+        return redirect('login') 
+    
 @login_required
 def contact_view(request):
     if request.method == "POST":
@@ -271,3 +328,7 @@ def registerpage(request):
 
 def success_page(request):
     return render(request, 'success_page.html')
+
+def viewnot(request):
+    note = NotificationModel.objects.all()
+    return render(request,"index9.html",{'notes':note})
