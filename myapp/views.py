@@ -16,9 +16,27 @@ from django.core.validators import validate_email
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from .forms import ProjectForm
 import os
 
 logger = logging.getLogger(__name__)
+
+def edit_project(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    
+    # Check if the logged-in user is the owner of the project
+    if request.user != project.user:
+        return redirect('my_projects')  # Optional security check
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('my_projects')  # Redirect to "My Projects" after successful edit
+    else:
+        form = ProjectForm(instance=project)
+
+    return render(request, 'edit_project.html', {'form': form})
 
 def delete_project(request, project_id):
     project = get_object_or_404(Project, id=project_id)

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index9, name='home'),  # Root URL maps to the index view
+    path('', views.index9, name='home'),
     path('index9/', views.index9, name='index9'),
     path('about/', views.about, name='about'),
     path('login/', views.login, name='login'),
@@ -29,6 +29,7 @@ urlpatterns = [
     path('my-projects/', views.my_projects, name='my_projects'),
     path('all-projects/', views.all_projects, name='all_projects'),
     path('delete_project/<int:project_id>/', views.delete_project, name='delete_project'),
+    path('edit_project/<int:project_id>/', views.edit_project, name='edit_project'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
