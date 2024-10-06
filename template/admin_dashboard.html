@@ -148,35 +148,8 @@
 </head>
 <body>
 
-    <!-- Login Page -->
-    <div class="login-container" id="login-page">
-        <div class="login-box">
-            <h2>Admin Login</h2>
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li class="{{ message.tags }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-            
-            <form method="post" action="admin_login_action/">
-                {% csrf_token %}
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="button">Login</button>
-            </form>
-        </div>
-    </div>
-
     <!-- Admin Panel -->
-    <div id="admin-panel" style="display: none;">
+    <div id="admin-panel">
         <!-- Sidebar -->
         <div class="sidebar">
             <h2>Admin Panel</h2>
@@ -184,7 +157,7 @@
             <a href="#users">Users</a>
             <a href="#settings">Settings</a>
             <a href="#reports">Reports</a>
-            <a href="#logout" onclick="showLogin()">Logout</a>
+            <a href="#logout">Logout</a>
         </div>
 
         <!-- Main Content -->
